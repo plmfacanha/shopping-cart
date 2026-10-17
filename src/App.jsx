@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         Full width (Tailwind override)
       </Button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
