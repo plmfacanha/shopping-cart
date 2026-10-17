@@ -1,27 +1,60 @@
+import { ProductCard, ProductCardSkeleton } from "@/components/ProductCard";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 function App() {
   return (
-    <div className="flex flex-col items-start gap-4 p-6">
-      <h1 className="text-3xl font-bold">Hello World</h1>
+    <div className="mx-auto flex min-h-screen max-w-6xl flex-col gap-6 p-6">
+      <header className="flex items-center justify-between">
+        <h1 className="text-3xl font-bold">Shop</h1>
 
-      <div className="flex items-center gap-2">
-        <Button>Default</Button>
-        <Button variant="outline">Outline</Button>
-        <Button variant="secondary">Secondary</Button>
-        <Button variant="ghost">Ghost</Button>
-        <Button variant="destructive">Destructive</Button>
-        <Button variant="link">Link</Button>
-      </div>
+        <Sheet>
+          <SheetTrigger render={<Button variant="outline" />}>
+            Cart
+            <Badge>0</Badge>
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Your cart</SheetTitle>
+              <SheetDescription>
+                Review your items before checkout.
+              </SheetDescription>
+            </SheetHeader>
 
-      <div className="flex items-center gap-2">
-        <Button size="sm">Small</Button>
-        <Button size="lg">Large</Button>
-      </div>
+            <div className="flex-1 px-4">
+              <p className="text-sm text-muted-foreground">
+                Your cart is empty.
+              </p>
+            </div>
 
-      <Button variant="outline" size="lg" className="w-full">
-        Full width (Tailwind override)
-      </Button>
+            <Separator />
+            <SheetFooter>
+              <div className="flex justify-between font-semibold">
+                <span>Total</span>
+                <span>$0.00</span>
+              </div>
+              <Button className="w-full">Checkout</Button>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
+      </header>
+
+      <main className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCardSkeleton />
+      </main>
     </div>
   );
 }

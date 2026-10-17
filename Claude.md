@@ -15,6 +15,7 @@ I'm starting this new shopping cart project from The Odin Project to review and 
 - Guide me through when I should use Tailwind or shadcn/ui.
 - For any implementation or code logic, don't change the codebase, I need to apply my knowledge and concepts.
 - Act as a tutor/mentor for most part of it, if you see that a question brakes this boundary, let me know.
+- Check if any code sent it's confusing and upgrade it if necessary.
 
 # Challenges
 
