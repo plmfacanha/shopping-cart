@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="mx-auto flex min-h-screen max-w-6xl flex-col gap-6 p-6">
       <header className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Shop</h1>
+        <h1 className="text-3xl font-bold">FucaSurf Shop</h1>
 
         <Sheet>
           <SheetTrigger render={<Button variant="outline" />}>
