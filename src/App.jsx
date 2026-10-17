@@ -2,6 +2,7 @@ import { ProductCard, ProductCardSkeleton } from "@/components/ProductCard";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Store } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -16,7 +17,10 @@ function App() {
   return (
     <div className="mx-auto flex min-h-screen max-w-6xl flex-col gap-6 p-6">
       <header className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">FucaSurf Shop</h1>
+        <div className="flex items-center gap-3">
+          <Store />
+          <h1 className="text-3xl font-bold">FucaSurf Shop</h1>
+        </div>
 
         <Sheet>
           <SheetTrigger render={<Button variant="outline" />}>
