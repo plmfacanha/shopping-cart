@@ -7,6 +7,7 @@ I'm starting this new shopping cart project from The Odin Project to review and 
 - React
 - TailwindCSS
 - shadcn/ui
+- React Testing
 
 # Rules
 
@@ -21,3 +22,4 @@ I'm starting this new shopping cart project from The Odin Project to review and 
 
 - I'll try to implement all the logic (e.g. fetching data from another API).
 - Use for the first time a MCP server from shadcn/ui to make a pleasant UI.
+- Implement logic for React testing for most of the components with React Testing Library.
