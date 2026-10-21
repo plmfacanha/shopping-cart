@@ -13,6 +13,14 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
+/* 
+  TODO: React testing
+  // 1. Ask Claude to generate files and modify config.js if neeeded
+  2. Check if <h1> is being displayed
+  3. Check if once a user clicks in the 'Add to Cart' the jest-dom receives that event
+  4. Create a state for items added
+*/
+
 function App() {
   return (
     <div className="mx-auto flex min-h-screen max-w-6xl flex-col gap-6 p-6">
