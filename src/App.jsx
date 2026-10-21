@@ -16,11 +16,10 @@ import {
 /* 
   TODO: React testing
   * remember about it.todo() for a list of future tests
-  ? display simple messages for behaviours/logic that are not implemented yet
-  // 1. Ask Claude to generate files and modify config.js if neeeded
-  // 2. Check if <h1> is being displayed with the correct text
-  3. Check if once a user clicks in the 'Add to Cart' the jest-dom receives that event.
-  4. Create a it.todo() for adding produtcts to the cart
+  // 1. ask Claude to generate files and modify config.js if neeeded
+  // 2. check if <h1> is being displayed with the correct text
+  3. check if once a user clicks in the 'Add to Cart' the jest-dom receives that event. //? display simple message to confirm it
+  4. test if product was added to the cart
 */
 
 function App() {
