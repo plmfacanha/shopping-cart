@@ -1,5 +1,5 @@
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -7,11 +7,11 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Skeleton } from "@/components/ui/skeleton"
+} from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 // Static placeholder: your fetched product data and the add-to-cart handler plug in here.
-function ProductCard() {
+function ProductCard({ handleClick }) {
   return (
     <Card>
       <div className="mx-4 aspect-square rounded-lg bg-muted" />
@@ -26,10 +26,12 @@ function ProductCard() {
         <p className="text-lg font-semibold">$0.00</p>
       </CardContent>
       <CardFooter>
-        <Button className="w-full">Add to cart</Button>
+        <Button className="w-full" onClick={handleClick}>
+          Add to cart
+        </Button>
       </CardFooter>
     </Card>
-  )
+  );
 }
 
 // Same shape as ProductCard, shown while the API request is in flight.
@@ -49,7 +51,7 @@ function ProductCardSkeleton() {
         <Skeleton className="h-8 w-full" />
       </CardFooter>
     </Card>
-  )
+  );
 }
 
-export { ProductCard, ProductCardSkeleton }
+export { ProductCard, ProductCardSkeleton };

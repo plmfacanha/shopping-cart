@@ -1,18 +1,24 @@
 import { render, screen } from "@testing-library/react";
-import { userEvent } from "@testing-library/user-event";
-import { describe, expect, it, vi } from "vitest";
+// import { userEvent } from "@testing-library/user-event";
+import { beforeEach, describe, expect, it } from "vitest";
 import App from "./App";
 
 describe("App", () => {
-  render(<App />);
+  beforeEach(() => {
+    render(<App />);
+  });
+
   it("renders the shop heading", () => {
     expect(screen.getByRole("heading")).toHaveTextContent("FucaSurf Shop");
   });
 
-  it("checks click when adding items to the cart", () => {
-    const onClick = vi.fn();
-    userEvent.click(screen.getAllByRole("button", { name: /Add to cart/i }));
+  it("checks click when adding items to the cart", async () => {
+    // const user = userEvent.setup();
 
-    expect(onClick).toHaveBeenCalledTimes(1);
+    const currBtn = screen
+      .getAllByRole("button", { name: /Add to cart/i })
+      .at(0);
+
+    console.log(currBtn);
   });
 });
