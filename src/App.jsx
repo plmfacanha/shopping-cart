@@ -18,7 +18,7 @@ import {
   * Remember about it.todo() for a list of future tests
   // 1. Ask Claude to generate files and modify config.js if neeeded
   // 2. check if <h1> is being displayed with the correct text
-  3. Check if once a user clicks in the 'Add to Cart' the jest-dom receives that event. //? display simple message to confirm it
+  3. Check if once a user clicks in the 'Add to Cart' the jest-dom receives that event. //? display on console the button element to confirm it
   4. Test if product was added to the cart
 */
 
