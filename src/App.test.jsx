@@ -1,9 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import ProductCard from "./components/ProductCard";
+import App from "./App";
 
-describe("App", () => {});
+describe("App", () => {
+  beforeEach(() => {
+    render(<App />);
+  });
+});
 
 describe("ProductCard", () => {
   it("check if add to cart button was clicked", async () => {
