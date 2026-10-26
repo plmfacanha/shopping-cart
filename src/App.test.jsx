@@ -1,9 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import { beforeEach, afterEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import ProductCard from "./components/ProductCard";
 
-describe("Product Card test", () => {
+describe("App", () => {});
+
+describe("ProductCard", () => {
   it("check if add to cart button was clicked", async () => {
     // TODO: arrange, act, assert (AAA) for a button
     // 0. mock function passed to the component that will be rendered
@@ -20,9 +22,5 @@ describe("Product Card test", () => {
     await user.click(button);
     // 4. confirm that it was returned
     expect(onAdd).toHaveBeenCalled();
-  });
-
-  afterEach(() => {
-    vi.restoreAllMocks();
   });
 });
