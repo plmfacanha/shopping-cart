@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 // import { userEvent } from "@testing-library/user-event";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import App from "./App";
 
 describe("App", () => {
@@ -13,6 +13,10 @@ describe("App", () => {
   });
 
   it("log in the console the current button clicked", async () => {
+    const click = vi.fn();
+
+    click();
+
     const currBtn = screen
       .getAllByRole("button", { name: /Add to cart/i })
       .at(0);
