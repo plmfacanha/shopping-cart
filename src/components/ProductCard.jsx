@@ -11,7 +11,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 
 // Static placeholder: your fetched product data and the add-to-cart handler plug in here.
-function ProductCard({ onAdd }) {
+export default function ProductCard({ onAdd }) {
   return (
     <Card>
       <div className="mx-4 aspect-square rounded-lg bg-muted" />
