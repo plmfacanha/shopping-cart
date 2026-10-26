@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
-// import { userEvent } from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import App from "./App";
+import ProductCard from "./components/ProductCard";
 
 describe("App", () => {
   beforeEach(() => {
@@ -12,11 +13,19 @@ describe("App", () => {
     expect(screen.getByRole("heading")).toHaveTextContent("FucaSurf Shop");
   });
 
-  it("check if button was clicked", async () => {
-    const click = vi.fn();
-
-    click();
-
-    expect(click).toHaveBeenCalled();
+  it("check if add to cart button was clicked", async () => {
+    // TODO: arrange, act, assert (AAA)
+    // 0. mock function passed to the component that will be rendered
+    const onAdd = vi.fn();
+    // 1. render button
+    render(<ProductCard onAdd={onAdd} />);
+    // 2. create a mock user
+    const user = userEvent.setup();
+    // 3. fake an event
+    // 3.1 grab one of the buttons
+    const button = screen.getAllByRole("button", { name: /add to cart/i });
+    await user.click(button);
+    // 4. confirm that it was returned
+    expect(button).toHaveBeenCalled();
   });
 });
