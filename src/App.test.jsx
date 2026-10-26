@@ -13,8 +13,6 @@ describe("App", () => {
   });
 
   it("checks click when adding items to the cart", async () => {
-    // const user = userEvent.setup();
-
     const currBtn = screen
       .getAllByRole("button", { name: /Add to cart/i })
       .at(0);
