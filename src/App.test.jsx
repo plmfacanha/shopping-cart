@@ -12,7 +12,7 @@ describe("App", () => {
     expect(screen.getByRole("heading")).toHaveTextContent("FucaSurf Shop");
   });
 
-  it("checks click when adding items to the cart", async () => {
+  it("log in the console the current button clicked", async () => {
     const currBtn = screen
       .getAllByRole("button", { name: /Add to cart/i })
       .at(0);
