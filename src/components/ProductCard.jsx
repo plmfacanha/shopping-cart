@@ -11,7 +11,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 
 // Static placeholder: your fetched product data and the add-to-cart handler plug in here.
-function ProductCard({ handleClick }) {
+function ProductCard({ onAdd }) {
   return (
     <Card>
       <div className="mx-4 aspect-square rounded-lg bg-muted" />
@@ -26,7 +26,7 @@ function ProductCard({ handleClick }) {
         <p className="text-lg font-semibold">$0.00</p>
       </CardContent>
       <CardFooter>
-        <Button className="w-full" onClick={handleClick}>
+        <Button className="w-full" onClick={onAdd}>
           Add to cart
         </Button>
       </CardFooter>

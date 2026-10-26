@@ -23,6 +23,10 @@ import {
 */
 
 function App() {
+  const handleAdd = () => {
+    console.log("product was added!");
+  };
+
   return (
     <div className="mx-auto flex min-h-screen max-w-6xl flex-col gap-6 p-6">
       <header className="flex items-center justify-between">
@@ -63,7 +67,7 @@ function App() {
       </header>
 
       <main className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <ProductCard />
+        <ProductCard onAdd={handleAdd} />
         <ProductCard />
         <ProductCard />
         <ProductCardSkeleton />
