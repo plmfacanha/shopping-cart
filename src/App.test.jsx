@@ -12,15 +12,11 @@ describe("App", () => {
     expect(screen.getByRole("heading")).toHaveTextContent("FucaSurf Shop");
   });
 
-  it("log in the console the current button clicked", async () => {
+  it("check if button was clicked", async () => {
     const click = vi.fn();
 
     click();
 
-    const currBtn = screen
-      .getAllByRole("button", { name: /Add to cart/i })
-      .at(0);
-
-    console.log(currBtn);
+    expect(click).toHaveBeenCalled();
   });
 });
