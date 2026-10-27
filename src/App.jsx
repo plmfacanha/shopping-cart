@@ -14,6 +14,12 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
+/* 
+  TODO: fetch API with product info and images
+  1. display product info and images in the ProductCard component
+  2. implement function that sends products info and images to the Sheet component 
+*/
+
 function App() {
   const [items, setItems] = useState(0);
 
