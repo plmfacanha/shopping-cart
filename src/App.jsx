@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Store } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Sheet,
   SheetContent,
@@ -16,14 +16,21 @@ import {
 
 /* 
   TODO: fetch API with product info and images
-  0. fetch API and get data for products using the hook useEffect()
+  0. get data for products using the hook useEffect()
   1. display product info and images in the ProductCard component
-  2. implement function that sends ProductCard info and images to the Sheet component 
-  3. ensure product items are being displayed in the Sheet component when item is added
+  3. ensure product items are being displayed in the Sheet component when item is added to the cart
 */
 
 function App() {
   const [items, setItems] = useState(0);
+
+  useEffect(() => {
+    async function getData() {
+      console.log("useEffect() here");
+    }
+
+    getData();
+  }, []);
 
   const handleAdd = () => {
     setItems((prev) => prev + 1);
