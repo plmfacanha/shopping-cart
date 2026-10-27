@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Store } from "lucide-react";
+import { useState } from "react";
 import {
   Sheet,
   SheetContent,
@@ -14,17 +15,14 @@ import {
 } from "@/components/ui/sheet";
 
 /* 
-  TODO: React testing
-  // * Remember about it.todo() for a list of future tests
-  // 1. Ask Claude to generate files and modify config.js if neeeded
-  // 2. check if <h1> is being displayed with the correct text
-  3. Check if once a user clicks in the 'Add to Cart' the jest-dom receives that event.
-  4. Test if product was added to the cart
+TODO: increase cart number by one when item is added
+1. create a state to store the total numbers of items added
 */
-
 function App() {
+  const [items, setItems] = useState(0);
+
   const handleAdd = () => {
-    console.log("product was added!");
+    return setItems(items + 1);
   };
 
   return (
