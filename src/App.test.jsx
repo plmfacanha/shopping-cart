@@ -12,7 +12,7 @@ describe("App", () => {
 
 describe("ProductCard", () => {
   it("check if add to cart button was clicked", async () => {
-    // TODO: arrange, act, assert (AAA) for a button
+    // TODO: arrange, act, assert (AAA) for a button element
     // 0. mock function passed to the component that will be rendered
     const onAdd = vi.fn();
     // 1. render button
