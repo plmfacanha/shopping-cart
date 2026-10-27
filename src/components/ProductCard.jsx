@@ -19,8 +19,8 @@ export default function ProductCard({ onAdd }) {
         <Badge variant="secondary" className="w-fit">
           Category
         </Badge>
-        <CardTitle>Product name</CardTitle>
-        <CardDescription>A short description of the product.</CardDescription>
+        <CardTitle>Product Title</CardTitle>
+        <CardDescription>Short Description</CardDescription>
       </CardHeader>
       <CardContent>
         <p className="text-lg font-semibold">$0.00</p>

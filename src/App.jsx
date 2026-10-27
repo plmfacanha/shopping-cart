@@ -14,15 +14,11 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-/* 
-TODO: increase cart number by one when item is added
-1. create a state to store the total numbers of items added
-*/
 function App() {
   const [items, setItems] = useState(0);
 
   const handleAdd = () => {
-    return setItems(items + 1);
+    setItems((prev) => prev + 1);
   };
 
   return (
@@ -36,7 +32,7 @@ function App() {
         <Sheet>
           <SheetTrigger render={<Button variant="outline" />}>
             Cart
-            <Badge>0</Badge>
+            <Badge>{items}</Badge>
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
@@ -66,8 +62,8 @@ function App() {
 
       <main className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <ProductCard onAdd={handleAdd} />
-        <ProductCard />
-        <ProductCard />
+        <ProductCard onAdd={handleAdd} />
+        <ProductCard onAdd={handleAdd} />
         <ProductCardSkeleton />
       </main>
     </div>
