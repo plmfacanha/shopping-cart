@@ -16,9 +16,10 @@ import {
 
 /* 
   TODO: fetch API with product info and images
+  0. fetch API and get data for products using the hook useEffect()
   1. display product info and images in the ProductCard component
-  2. implement function that sends products info and images to the Sheet component 
-  3. ensure product items are being displayed in the Sheet component
+  2. implement function that sends ProductCard info and images to the Sheet component 
+  3. ensure product items are being displayed in the Sheet component when item is added
 */
 
 function App() {
