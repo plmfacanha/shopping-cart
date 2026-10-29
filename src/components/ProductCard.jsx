@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
+  // CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -11,22 +11,32 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 
 // Static placeholder: your fetched product data and the add-to-cart handler plug in here.
-export default function ProductCard({ onAdd }) {
+export default function ProductCard({ ...props }) {
   return (
     <Card>
-      <div className="mx-4 aspect-square rounded-lg bg-muted" />
+      <div className="mx-4 aspect-square rounded-lg bg-muted p-2">
+        <img
+          src={props.image}
+          alt={props.title}
+          loading="lazy"
+          className="size-full object-contain mix-blend-multiply"
+        />
+      </div>
       <CardHeader>
         <Badge variant="secondary" className="w-fit">
-          Category
+          {props.category}
         </Badge>
-        <CardTitle>Product Title</CardTitle>
-        <CardDescription>Short Description</CardDescription>
+        <CardTitle className="line-clamp-2 min-h-[2lh]">
+          {props.title}
+        </CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="text-lg font-semibold">$0.00</p>
+        <p className="text-lg font-semibold">
+          ${Number(props.price).toFixed(2)}
+        </p>
       </CardContent>
-      <CardFooter>
-        <Button className="w-full" onClick={onAdd}>
+      <CardFooter className="mt-auto">
+        <Button className="w-full" onClick={props.onAdd}>
           Add to cart
         </Button>
       </CardFooter>
@@ -47,7 +57,7 @@ function ProductCardSkeleton() {
       <CardContent>
         <Skeleton className="h-6 w-16" />
       </CardContent>
-      <CardFooter>
+      <CardFooter className="mt-auto">
         <Skeleton className="h-8 w-full" />
       </CardFooter>
     </Card>

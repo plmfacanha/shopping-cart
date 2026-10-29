@@ -17,8 +17,9 @@ import {
 /* 
   TODO: fetch API with product info and images
   // 0. get data for products using the hook useEffect() from FakeStore API
-  1. display product info and images in the ProductCard component
-  3. ensure product items are being displayed in the Sheet component when item is added to the cart
+  // 1. display product info and images in the ProductCard component
+  2. test App.jsx for fetching FakeStore API
+  3. display products added to the cart in the Sheet component
 */
 
 function App() {
@@ -33,10 +34,8 @@ function App() {
       }
 
       const result = await response.json();
-      const arr = result.slice(0, 3);
-      setProducts((prev) => [...prev, arr]);
-
-      console.log(arr);
+      const arr = result.slice(0, 4);
+      setProducts(arr);
     }
 
     getData();
@@ -85,19 +84,18 @@ function App() {
         </Sheet>
       </header>
 
-      <main className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {products.map((p) => {
-          <>
-            <ProductCard
-              id={p.id}
-              title={p.title}
-              price={p.price}
-              category={p.category}
-              description={p.description}
-              onAdd={handleAdd}
-            />
-          </>;
-        })}
+      <main className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        {products.map((p) => (
+          <ProductCard
+            id={p.id}
+            title={p.title}
+            price={p.price}
+            category={p.category}
+            description={p.description}
+            image={p.image}
+            onAdd={handleAdd}
+          />
+        ))}
         <ProductCardSkeleton />
       </main>
     </div>
