@@ -26,7 +26,10 @@ function App() {
 
   useEffect(() => {
     async function getData() {
-      console.log("useEffect() here");
+      const res = await fetch("/v1/workflows");
+      const result = res.json();
+
+      console.log(result);
     }
 
     getData();
