@@ -16,27 +16,31 @@ import {
 
 /* 
   TODO: fetch API with product info and images
-  0. get data for products using the hook useEffect()
+  // 0. get data for products using the hook useEffect() from FakeStore API
   1. display product info and images in the ProductCard component
   3. ensure product items are being displayed in the Sheet component when item is added to the cart
 */
 
 function App() {
-  const [items, setItems] = useState(0);
+  const [quantity, setQuantity] = useState(0);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     async function getData() {
-      const res = await fetch("/v1/workflows");
-      const result = res.json();
+      const response = await fetch("https://fakestoreapi.com/products");
+      if (!response.ok) {
+        throw new Error("Something went wrong: ", response.status);
+      }
 
-      console.log(result);
+      const result = await response.json();
+      setProducts((prev) => [...prev, result]);
     }
 
     getData();
   }, []);
 
   const handleAdd = () => {
-    setItems((prev) => prev + 1);
+    setQuantity((prev) => prev + 1);
   };
 
   return (
@@ -50,7 +54,7 @@ function App() {
         <Sheet>
           <SheetTrigger render={<Button variant="outline" />}>
             Cart
-            <Badge>{items}</Badge>
+            <Badge>{quantity}</Badge>
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
