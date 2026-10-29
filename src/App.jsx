@@ -33,7 +33,10 @@ function App() {
       }
 
       const result = await response.json();
-      setProducts((prev) => [...prev, result]);
+      const arr = result.slice(0, 3);
+      setProducts((prev) => [...prev, arr]);
+
+      console.log(arr);
     }
 
     getData();
@@ -83,9 +86,18 @@ function App() {
       </header>
 
       <main className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <ProductCard onAdd={handleAdd} />
-        <ProductCard onAdd={handleAdd} />
-        <ProductCard onAdd={handleAdd} />
+        {products.map((p) => {
+          <>
+            <ProductCard
+              id={p.id}
+              title={p.title}
+              price={p.price}
+              category={p.category}
+              description={p.description}
+              onAdd={handleAdd}
+            />
+          </>;
+        })}
         <ProductCardSkeleton />
       </main>
     </div>
