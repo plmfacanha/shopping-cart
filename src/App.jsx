@@ -18,7 +18,8 @@ import {
   TODO: fetch API with product info and images
   // 0. get data for products using the hook useEffect() from FakeStore API
   // 1. display product info and images in the ProductCard component
-  2. test App.jsx for fetching FakeStore API
+  // 2. test App.jsx for fetching FakeStore API
+  2.1 test if items shows up in the screen
   3. display products added to the cart in the Sheet component
 */
 

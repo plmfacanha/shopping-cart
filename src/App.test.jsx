@@ -4,11 +4,19 @@ import { describe, expect, it, vi } from "vitest";
 import ProductCard from "./components/ProductCard";
 import App from "./App";
 
+/* 
+TODO: next tests  
+1. App shows the title of a mocked product, using await screen.findByText(...).
+2. Clicking "Add to cart" in App changes the badge from 0 to 1.
+3. A response with ok: false doesn't crash the page and shows no products (and logs the error).
+
+*/
+
 describe("App", () => {
   it("mocks a successful fetch request", async () => {
     const mockResponse = {
       id: 0,
-      title: "string",
+      title: "mock jacket",
       price: 0.1,
       description: "string",
       category: "string",
@@ -21,6 +29,8 @@ describe("App", () => {
     });
 
     render(<App />);
+
+    await screen.findByText(mockResponse.title);
 
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledWith("https://fakestoreapi.com/products");
