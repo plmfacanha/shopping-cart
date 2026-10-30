@@ -8,6 +8,8 @@ describe("App", () => {
   beforeEach(() => {
     render(<App />);
   });
+
+  it.todo("check if fetching the API is working properly");
 });
 
 describe("ProductCard", () => {
@@ -19,13 +21,13 @@ describe("ProductCard", () => {
     render(<ProductCard onAdd={onAdd} />);
     // 2. create a mock user
     const user = userEvent.setup();
-    // 3. fake an event
-    // 3.1 grab one of the buttons
+    // 3. select one of the buttons component/element
     const button = screen
       .getAllByRole("button", { name: /add to cart/i })
       .at(0);
+    // 4. fake an event
     await user.click(button);
-    // 4. confirm that it was returned
+    // 5. confirm that it was returned
     expect(onAdd).toHaveBeenCalled();
   });
 });
