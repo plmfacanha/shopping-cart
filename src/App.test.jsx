@@ -6,16 +6,14 @@ import App from "./App";
 
 describe("App", () => {
   it("mocks a successful fetch request", async () => {
-    const mockResponse = [
-      {
-        id: 0,
-        title: "string",
-        price: 0.1,
-        description: "string",
-        category: "string",
-        image: "http://example.com",
-      },
-    ];
+    const mockResponse = {
+      id: 0,
+      title: "string",
+      price: 0.1,
+      description: "string",
+      category: "string",
+      image: "http://example.com",
+    };
 
     window.fetch = vi.fn().mockResolvedValue({
       ok: true,
