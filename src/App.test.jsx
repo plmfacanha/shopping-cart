@@ -15,15 +15,15 @@ describe("App", () => {
       image: "http://example.com",
     };
 
-    window.fetch = vi.fn().mockResolvedValue({
+    const fetchSpy = vi.spyOn(globalThis, "fetch").mockResolvedValue({
       ok: true,
       json: async () => [mockResponse],
     });
 
     render(<App />);
 
-    expect(fetch).toHaveBeenCalledTimes(1);
-    expect(fetch).toHaveBeenCalledWith("https://fakestoreapi.com/products");
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+    expect(fetchSpy).toHaveBeenCalledWith("https://fakestoreapi.com/products");
   });
 
   it("mock an unsuccessful fetch request", async () => {
@@ -32,34 +32,31 @@ describe("App", () => {
       message: "Error",
     };
 
-    // 2. mock fetch function with returned values
-    window.fetch = vi.fn().mockResolvedValue({
+    const fetchSpy = vi.spyOn(globalThis, "fetch").mockRejectedValue({
       ok: false,
       json: async () => [mockResponse],
     });
-  });
 
-  // 3. check if function was called and pass in the URL
-  expect(fetch).toHaveBeenCalledTimes(1);
-  expect(fetch).toHaveBeenCalledWith("https://fakestoreapi.com/products");
+    render(<App />);
+
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+    expect(fetchSpy).toHaveBeenCalledWith("https://fakestoreapi.com/products");
+  });
 });
 
 describe("ProductCard", () => {
   it("check if add to cart button was clicked", async () => {
-    // TODO: arrange, act, assert (AAA) for a click event
-    // 0. mock function passed to the component that will be rendered
     const onAdd = vi.fn();
-    // 1. render button
+
     render(<ProductCard onAdd={onAdd} />);
-    // 2. create a mock user
+
     const user = userEvent.setup();
-    // 3. select one of the buttons component/element
     const button = screen
       .getAllByRole("button", { name: /add to cart/i })
       .at(0);
-    // 4. fake an event
+
     await user.click(button);
-    // 5. confirm that it was returned
+
     expect(onAdd).toHaveBeenCalled();
   });
 });
