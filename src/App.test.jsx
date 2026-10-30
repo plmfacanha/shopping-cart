@@ -1,20 +1,37 @@
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import ProductCard from "./components/ProductCard";
 import App from "./App";
 
 describe("App", () => {
-  beforeEach(() => {
-    render(<App />);
-  });
+  it("mocks a successful fetch request", async () => {
+    const mockResponse = [
+      {
+        id: 0,
+        title: "string",
+        price: 0.1,
+        description: "string",
+        category: "string",
+        image: "http://example.com",
+      },
+    ];
 
-  it.todo("check if fetching the API is working properly");
+    window.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => [mockResponse],
+    });
+
+    render(<App />);
+
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(fetch).toHaveBeenCalledWith("https://fakestoreapi.com/products");
+  });
 });
 
 describe("ProductCard", () => {
   it("check if add to cart button was clicked", async () => {
-    // TODO: arrange, act, assert (AAA) for a button element
+    // TODO: arrange, act, assert (AAA) for a click event
     // 0. mock function passed to the component that will be rendered
     const onAdd = vi.fn();
     // 1. render button
