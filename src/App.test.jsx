@@ -25,6 +25,23 @@ describe("App", () => {
     expect(fetch).toHaveBeenCalledTimes(1);
     expect(fetch).toHaveBeenCalledWith("https://fakestoreapi.com/products");
   });
+
+  it("mock an unsuccessful fetch request", async () => {
+    const mockResponse = {
+      status: "404",
+      message: "Error",
+    };
+
+    // 2. mock fetch function with returned values
+    window.fetch = vi.fn().mockResolvedValue({
+      ok: false,
+      json: async () => [mockResponse],
+    });
+  });
+
+  // 3. check if function was called and pass in the URL
+  expect(fetch).toHaveBeenCalledTimes(1);
+  expect(fetch).toHaveBeenCalledWith("https://fakestoreapi.com/products");
 });
 
 describe("ProductCard", () => {
