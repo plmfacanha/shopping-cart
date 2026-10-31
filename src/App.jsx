@@ -78,17 +78,21 @@ function App() {
       </header>
 
       <main className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-        {products.map((p) => (
-          <ProductCard
-            key={p.id}
-            title={p.title}
-            price={p.price}
-            category={p.category}
-            description={p.description}
-            image={p.image}
-            onAdd={handleAdd}
-          />
-        ))}
+        {error ? (
+          <p>Page couldn't load: {error.message}</p>
+        ) : (
+          products.map((p) => (
+            <ProductCard
+              key={p.id}
+              title={p.title}
+              price={p.price}
+              category={p.category}
+              description={p.description}
+              image={p.image}
+              onAdd={handleAdd}
+            />
+          ))
+        )}
         <ProductCardSkeleton />
       </main>
     </div>
