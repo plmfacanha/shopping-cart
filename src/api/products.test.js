@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import getProducts from "@/api/products";
 import App from "@/App";
 
 // TODO: test for a rejected fetch
@@ -44,5 +45,19 @@ describe("getProducts", () => {
     expect(fetchSpy).toHaveBeenCalledWith("https://fakestoreapi.com/products");
   });
 
-  it.todo("check if the function throws if rejected");
+  it("check if the function returns an array of objects", async () => {
+    const mockResponse = {
+      key: "0",
+      title: "mock title",
+      price: "10",
+      category: "mock category",
+      description: "mock description",
+    };
+
+    // arrange
+    const data = await getProducts();
+
+    // act
+    expect(data).toEqual([mockResponse]);
+  });
 });
