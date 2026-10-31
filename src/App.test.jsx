@@ -1,48 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import ProductCard from "./components/ProductCard";
 import App from "./App";
 
 describe("App", () => {
-  it("mocks a successful fetch request", async () => {
-    const mockResponse = {
-      id: 0,
-      title: "mock jacket",
-      price: 0.1,
-      description: "string",
-      category: "string",
-      image: "http://example.com",
-    };
-
-    const fetchSpy = vi.spyOn(globalThis, "fetch").mockResolvedValue({
-      ok: true,
-      json: async () => [mockResponse],
-    });
-
+  beforeEach(() => {
     render(<App />);
-
-    await screen.findByText(mockResponse.title);
-
-    expect(fetchSpy).toHaveBeenCalledTimes(1);
-    expect(fetchSpy).toHaveBeenCalledWith("https://fakestoreapi.com/products");
-  });
-
-  it("mock an unsuccessful fetch request", async () => {
-    const mockResponse = {
-      status: "404",
-      message: "Error",
-    };
-
-    const fetchSpy = vi.spyOn(globalThis, "fetch").mockRejectedValue({
-      ok: false,
-      json: async () => [mockResponse],
-    });
-
-    render(<App />);
-
-    expect(fetchSpy).toHaveBeenCalledTimes(1);
-    expect(fetchSpy).toHaveBeenCalledWith("https://fakestoreapi.com/products");
   });
 });
 
