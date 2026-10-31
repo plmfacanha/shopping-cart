@@ -14,36 +14,24 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-/* 
-  TODO: fetch API with product info and images
-  // 0. get data for products using the hook useEffect() from FakeStore API
-  // 1. display product info and images in the ProductCard component
-  // 2. test App.jsx for fetching FakeStore API
-  2.1 test if items shows up in the screen
-  3. display products added to the cart in the Sheet component
-*/
+import getProducts from "@/api/products";
 
 function App() {
   const [quantity, setQuantity] = useState(0);
   const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function getData() {
+    async function fetchData() {
       try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        if (!response.ok) {
-          throw new Error(`Something went wrong: ${response.status}`);
-        }
-
-        const result = await response.json();
-        const arr = result.slice(0, 4);
-        setProducts(arr);
-      } catch (error) {
-        console.error(`Error: ${error.message}`);
+        const data = await getProducts();
+        setProducts(data);
+      } catch (e) {
+        console.error(e.message);
+        setError(e);
       }
     }
-
-    getData();
+    fetchData();
   }, []);
 
   const handleAdd = () => {
@@ -92,7 +80,7 @@ function App() {
       <main className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4">
         {products.map((p) => (
           <ProductCard
-            id={p.id}
+            key={p.id}
             title={p.title}
             price={p.price}
             category={p.category}
