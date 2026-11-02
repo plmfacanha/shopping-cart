@@ -28,18 +28,12 @@ describe("getProducts", () => {
     expect(fetch).toHaveBeenCalledWith("https://fakestoreapi.com/products");
   });
 
-  it.todo("fetch with no success", async () => {
-    const mockResponse = {
-      status: "404",
-      message: "Something went wrong",
-    };
+  it("fetch that throws", async () => {
+    // arrange
+    // 1. mock fetch
+    globalThis.fetch = vi.fn().mockRejectedValue(new Error("Error!"));
 
-    globalThis.fetch = vi.fn().mockRejectedValue({
-      ok: false,
-      json: async () => mockResponse,
-    });
-
-    const data = await getProducts();
-    expect(data).toHaveBeenCalled();
+    // assert
+    expect(() => getProducts()).rejects.toThrow(/error!/i);
   });
 });
