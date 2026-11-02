@@ -2,9 +2,8 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import getProducts from "@/api/products";
 
-// TODO: test for a rejected fetch
 describe("getProducts", () => {
-  it("fetch data sucessfully", async () => {
+  it("fetch data with success", async () => {
     const mockResponse = [
       {
         id: 0,
@@ -26,5 +25,8 @@ describe("getProducts", () => {
     const data = await getProducts();
 
     expect(data).toEqual(mockResponse);
+    expect(fetch).toHaveBeenCalledWith("https://fakestoreapi.com/products");
   });
+
+  it.todo("fetch data with no success", () => {});
 });
