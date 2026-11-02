@@ -35,7 +35,16 @@ describe("getProducts", () => {
     await expect(getProducts()).rejects.toThrow(/error!/i);
   });
 
-  it("fetch data response with a HTTP error", async () => {
-    // act
+  it("fetch returns fake HTTP error response", async () => {
+    // arrange
+    const mockResponse = {
+      ok: false,
+      status: "404",
+    };
+
+    globalThis.fetch = vi.fn().mockResolvedValue(mockResponse);
+
+    // act & assert
+    await expect(getProducts()).rejects.toThrow(/404/);
   });
 });
