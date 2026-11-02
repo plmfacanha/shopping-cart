@@ -30,10 +30,11 @@ describe("getProducts", () => {
 
   it("fetch that throws", async () => {
     // arrange
-    // 1. mock fetch
     globalThis.fetch = vi.fn().mockRejectedValue(new Error("Error!"));
 
-    // assert
-    expect(() => getProducts()).rejects.toThrow(/error!/i);
+    // act & assert
+    await expect(() => getProducts()).rejects.toThrow(/error!/i);
   });
+
+  it("fetch data response with a HTTP error", () => {});
 });
