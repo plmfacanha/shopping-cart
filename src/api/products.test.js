@@ -1,4 +1,3 @@
-import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import getProducts from "@/api/products";
 
@@ -22,9 +21,9 @@ describe("getProducts", () => {
       .mockResolvedValue({ ok: true, json: async () => mockResponse });
 
     // act
-    const data = await getProducts();
+    const products = await getProducts();
 
-    expect(data).toEqual(mockResponse);
+    expect(products).toEqual(mockResponse);
     expect(fetch).toHaveBeenCalledWith("https://fakestoreapi.com/products");
   });
 
@@ -33,8 +32,10 @@ describe("getProducts", () => {
     globalThis.fetch = vi.fn().mockRejectedValue(new Error("Error!"));
 
     // act & assert
-    await expect(() => getProducts()).rejects.toThrow(/error!/i);
+    await expect(getProducts()).rejects.toThrow(/error!/i);
   });
 
-  it("fetch data response with a HTTP error", () => {});
+  it("fetch data response with a HTTP error", async () => {
+    // act
+  });
 });
