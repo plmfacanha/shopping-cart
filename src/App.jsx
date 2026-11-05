@@ -63,14 +63,24 @@ function App() {
             </SheetHeader>
 
             <div className="flex-1 px-4">
-              {quantity ?? <p>{cart.map((c) => c.title)}</p>}
+              {quantity ? (
+                <>
+                  {cart.map((c) => (
+                    <p key={c.id}>{c.title}</p>
+                  ))}
+                </>
+              ) : (
+                <p>Cart is empty</p>
+              )}
             </div>
 
             <Separator />
             <SheetFooter>
               <div className="flex justify-between font-semibold">
                 <span>Total</span>
-                <span>$0.00</span>
+                <span>
+                  {cart ? cart.map((c) => <p>${c.price}</p>) : <p>$0.00</p>}
+                </span>
               </div>
               <Button className="w-full">Checkout</Button>
             </SheetFooter>
