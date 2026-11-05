@@ -25,7 +25,6 @@ function App() {
     async function fetchData() {
       try {
         const products = await getProducts();
-
         setProducts(products);
       } catch (e) {
         console.error(e.message);
@@ -38,6 +37,20 @@ function App() {
   const handleAdd = (product) => {
     // TODO: filter list of products to avoid duplicates
 
+    const isDuplicate = cart.some((p) => p.id === product.id);
+
+    if (!isDuplicate) {
+      setCart((prev) => [...prev, { ...product, quantity: 1 }]);
+    } else {
+      setCart((prev) =>
+        prev.map((p) =>
+          p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p,
+        ),
+      );
+    }
+
+    // TODO: learn how to use reduce to count all the products added to the cart
+    // 1. check reduce documentation and implement in setQuantity()
     setQuantity((prev) => prev + 1);
   };
 
