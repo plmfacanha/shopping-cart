@@ -25,8 +25,8 @@ function App() {
     async function fetchData() {
       try {
         const products = await getProducts();
-        const updatedProducts = products.map((p) => ({ ...p, quantity: 1 }));
-        setProducts(updatedProducts);
+
+        setProducts(products);
       } catch (e) {
         console.error(e.message);
         setError(e);
@@ -36,8 +36,9 @@ function App() {
   }, []);
 
   const handleAdd = (product) => {
-    // TODO: filter list of products to avoid duplicated
-    console.log("Item added!");
+    // TODO: filter list of products to avoid duplicates
+
+    setQuantity((prev) => prev + 1);
   };
 
   const handleRemove = (product) => {
