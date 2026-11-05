@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import getProducts from "@/api/products";
 
 describe("getProducts", () => {
-  it("fetch data with success", async () => {
+  it("returns the products when the request succeeds", async () => {
     const mockResponse = [
       {
         id: 0,
@@ -27,7 +27,7 @@ describe("getProducts", () => {
     expect(fetch).toHaveBeenCalledWith("https://fakestoreapi.com/products");
   });
 
-  it("fetch that throws", async () => {
+  it("rejects with the same error when fetch itself fails", async () => {
     // arrange
     globalThis.fetch = vi.fn().mockRejectedValue(new Error("Error!"));
 
@@ -35,7 +35,7 @@ describe("getProducts", () => {
     await expect(getProducts()).rejects.toThrow(/error!/i);
   });
 
-  it("fetch returns fake HTTP error response", async () => {
+  it("rejects with the status code when the server responds with an error", async () => {
     // arrange
     const mockResponse = {
       ok: false,
