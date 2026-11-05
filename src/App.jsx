@@ -24,8 +24,9 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await getProducts();
-        setProducts(data);
+        const products = await getProducts();
+        const updatedProducts = products.map((p) => ({ ...p, quantity: 1 }));
+        setProducts(updatedProducts);
       } catch (e) {
         console.error(e.message);
         setError(e);
@@ -35,10 +36,12 @@ function App() {
   }, []);
 
   const handleAdd = (product) => {
-    // TODO: push added product to the products array
-    setCart((prev) => [...prev, product]);
+    // TODO: filter list of products to avoid duplicated
+    console.log("Item added!");
+  };
 
-    setQuantity((prev) => prev + 1);
+  const handleRemove = (product) => {
+    console.log(`This ${product.title} was removed!`);
   };
 
   return (
@@ -66,7 +69,15 @@ function App() {
               {quantity ? (
                 <>
                   {cart.map((c) => (
-                    <p key={c.id}>{c.title}</p>
+                    <div
+                      key={c.id}
+                      className="flex items-center justify-between gap-2"
+                    >
+                      <p>{c.title}</p>
+                      <Badge variant="secondary" onClick={handleRemove}>
+                        x{c.quantity}
+                      </Badge>
+                    </div>
                   ))}
                 </>
               ) : (
