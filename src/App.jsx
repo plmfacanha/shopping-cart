@@ -18,6 +18,7 @@ import getProducts from "@/api/products";
 function App() {
   const [quantity, setQuantity] = useState(0);
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -33,7 +34,10 @@ function App() {
     fetchData();
   }, []);
 
-  const handleAdd = () => {
+  const handleAdd = (product) => {
+    // TODO: push added product to the products array
+    setCart((prev) => [...prev, product]);
+
     setQuantity((prev) => prev + 1);
   };
 
@@ -59,9 +63,7 @@ function App() {
             </SheetHeader>
 
             <div className="flex-1 px-4">
-              <p className="text-sm text-muted-foreground">
-                Your cart is empty.
-              </p>
+              {quantity ?? <p>{cart.map((c) => c.title)}</p>}
             </div>
 
             <Separator />
@@ -88,7 +90,7 @@ function App() {
               category={p.category}
               description={p.description}
               image={p.image}
-              onAdd={handleAdd}
+              onAdd={() => handleAdd(p)}
             />
           ))
         )}
