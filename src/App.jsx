@@ -65,7 +65,7 @@ function App() {
             <Badge>
               {cart.reduce((acc, currProduct) => {
                 return acc + currProduct.quantity;
-              })}
+              }, 0)}
             </Badge>
           </SheetTrigger>
           <SheetContent>
@@ -101,7 +101,11 @@ function App() {
               <div className="flex justify-between font-semibold">
                 <span>Total</span>
                 <span>
-                  {cart ? cart.map((c) => <p>${c.price}</p>) : <p>$0.00</p>}
+                  {cart ? (
+                    cart.map((c) => <p key={c.id}>${c.price}</p>)
+                  ) : (
+                    <p>$0.00</p>
+                  )}
                 </span>
               </div>
               <Button className="w-full">Checkout</Button>
