@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
-import { getByText } from "@testing-library/jest-dom";
 import ProductCard from "./components/ProductCard";
 import App from "./App";
 
@@ -21,13 +20,24 @@ describe("ProductCard", () => {
     expect(onAdd).toHaveBeenCalled();
   });
 
-  it("checks if badge updates when an item is added to the cart", async () => {
+  it("checks if badge displays the Sheet when an user clicks in the badge", async () => {
     // arrange
     // 1. render App.jsx
-    const app = render(<App />);
+    render(<App />);
+    // 2. create a user event
+    const user = userEvent.setup();
+    // 3. find the badge ("cart" icon) the user clicks on
+    const cartBtn = screen.getByRole("button", { name: "Cart0" });
+    // 4. the Sheet is not on the page before the click
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
 
     // act
-    // 2. simple test to check for a badge string ("cart") in the document
-    expect(getByText(/cart/i).toBeInTheDocument());
+    await user.click(cartBtn);
+
+    // assert
+    // 5. find the Sheet container that is displayed after the click
+    const sheet = await screen.findByRole("dialog");
+    expect(sheet).toBeVisible();
+    expect(screen.getByText("Your cart")).toBeInTheDocument();
   });
 });
