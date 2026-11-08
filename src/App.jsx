@@ -16,7 +16,6 @@ import {
 import getProducts from "@/api/products";
 
 function App() {
-  const [quantity, setQuantity] = useState(0);
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [error, setError] = useState(null);
@@ -35,8 +34,6 @@ function App() {
   }, []);
 
   const handleAdd = (product) => {
-    // TODO: filter list of products to avoid duplicates
-
     const isDuplicate = cart.some((p) => p.id === product.id);
 
     if (!isDuplicate) {
@@ -48,10 +45,6 @@ function App() {
         ),
       );
     }
-
-    // TODO: learn how to use reduce to count all the products added to the cart
-    // 1. check reduce documentation and implement in setQuantity()
-    setQuantity((prev) => prev + 1);
   };
 
   const handleRemove = (product) => {
@@ -69,7 +62,11 @@ function App() {
         <Sheet>
           <SheetTrigger render={<Button variant="outline" />}>
             Cart
-            <Badge>{quantity}</Badge>
+            <Badge>
+              {cart.reduce((acc, currProduct) => {
+                return acc + currProduct.quantity;
+              })}
+            </Badge>
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
@@ -80,7 +77,7 @@ function App() {
             </SheetHeader>
 
             <div className="flex-1 px-4">
-              {quantity ? (
+              {cart ? (
                 <>
                   {cart.map((c) => (
                     <div
